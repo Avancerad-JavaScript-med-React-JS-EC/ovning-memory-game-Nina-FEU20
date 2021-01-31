@@ -14,6 +14,23 @@
   padding: 2rem;
 }
 
+.winner {
+  text-align: center;
+}
+
+.winner h1 {
+  font-size: 3rem;
+  margin-bottom: 2rem;
+}
+
+button {
+  padding: 1em;
+  font-weight: bold;
+  background: #692d55;
+  border-radius: 5px;
+  color: white;
+}
+
 .game-board {
   display: flex;
   width: 1000px;

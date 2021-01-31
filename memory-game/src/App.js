@@ -11,7 +11,7 @@ function App() {
         <h1>Can you find all the matching cards?</h1>
       </div>
       {points === 8 ? (
-        <div>
+        <div className="winner">
           <h1>You won!</h1>
           <button onClick={() => setPoints(0)}>Play Again!</button>
         </div>
