@@ -1,8 +1,7 @@
 import React, { useEffect, useState } from "react";
 import MemoryCard from "./MemoryCard";
 
-function GameBoard() {
-  const [points, setPoints] = useState(0);
+function GameBoard(props) {
   const [numbers, setNumbers] = useState([]);
   const [firstCard, setFirstCard] = useState(0);
   const [secondCard, setSecondCard] = useState(0);
@@ -23,7 +22,7 @@ function GameBoard() {
   }
 
   function updateScore() {
-    setPoints(points + 1);
+    props.setPoints(props.points + 1);
   }
 
   function compareCards() {
@@ -47,41 +46,28 @@ function GameBoard() {
   }
 
   return (
-    <section>
-      {points === 8 ? (
-        <h2>You Won!</h2>
-      ) : (
-        <section className="game-plan">
-          <div>
-            <p>par: {points}</p>
-          </div>
-          <div className="game-board">
-            {numbers.map((number, index) => {
-              return (
-                <MemoryCard
-                  className={
-                    isClicked.includes(index)
-                      ? "memory-card flip"
-                      : "memory-card"
-                  }
-                  index={index}
-                  number={number}
-                  key={index}
-                  firstCard={firstCard}
-                  secondCard={secondCard}
-                  setFirstCard={setFirstCard}
-                  setSecondCard={setSecondCard}
-                  setIsClicked={setIsClicked}
-                  isClicked={isClicked}
-                  lockGame={lockGame}
-                  setLockGame={setLockGame}
-                />
-              );
-            })}
-          </div>
-        </section>
-      )}
-    </section>
+    <div className="game-board">
+      {numbers.map((number, index) => {
+        return (
+          <MemoryCard
+            className={
+              isClicked.includes(index) ? "memory-card flip" : "memory-card"
+            }
+            index={index}
+            number={number}
+            key={index}
+            firstCard={firstCard}
+            secondCard={secondCard}
+            setFirstCard={setFirstCard}
+            setSecondCard={setSecondCard}
+            setIsClicked={setIsClicked}
+            isClicked={isClicked}
+            lockGame={lockGame}
+            setLockGame={setLockGame}
+          />
+        );
+      })}
+    </div>
   );
 }
 
