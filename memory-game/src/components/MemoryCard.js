@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react";
 
 //TODO
 //Denna komponent ska vara ett memorykort som innehåller en siffra
@@ -6,12 +6,36 @@ import React from 'react';
 //När man klickar på det ska du dynamiskt lägga till CSS-klassen "flip"
 
 function MemoryCard(props) {
-    return (
-        <article className="memory-card">
-            <span className="front"></span>
-            <span className="back">Memory</span>
-        </article>
-    )
+  function handleClick(e) {
+    props.setIsClicked([...props.isClicked, props.index]);
+
+    if (props.firstCard === 0) {
+      props.setFirstCard(props.number);
+    } else {
+      props.setLockGame(!props.lockGame);
+      props.setSecondCard(props.number);
+    }
+  }
+
+  function disable() {
+    console.log("you cant turn the same card twice!");
+  }
+
+  return (
+    <article
+      className={props.className}
+      onClick={
+        props.className.includes("flip") || props.lockGame === true
+          ? disable
+          : handleClick
+      }
+    >
+      <span className="front">{props.number}</span>
+      <span className="back" id={props.number}>
+        Memory
+      </span>
+    </article>
+  );
 }
 
 export default MemoryCard;
